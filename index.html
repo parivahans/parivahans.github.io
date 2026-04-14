@@ -1,196 +1,774 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parivahan Sewa Portal – Online Vehicle & Driving Licence Services</title>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parivahan Sewa Portal – Online Vehicle & Driving Licence Services</title>
     <!-- Meta SEO -->
     <meta name="description" content="Parivahan Sewa is an official Government of India portal offering online vehicle registration, driving licence services, RC status, DL application, permit services, and transport-related facilities.">
     <meta name="keywords" content="Parivahan Sewa, Driving Licence Online, RC Status, Vehicle Registration, Parivahan Portal, DL Apply, RC Download">
     <meta name="robots" content="index, follow">
   
 <link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0d1117; --ink-2: #3d4652; --ink-3: #7a8494;
+  --rule: #e4e8ef; --rule-2: #f0f3f7; --white: #ffffff; --page: #f7f8fa;
+  --saffron: #e8820c; --saffron-pale: #fef3e6; --saffron-mid: #fde0b8;
+  --teal: #0c7c6e; --teal-pale: #e4f4f1;
+  --navy: #0f2d52; --blue: #1a5fb4; --blue-pale: #e8f0fc;
+  --blue-border: #1a5fb4;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+/* ══ NAV ══ */
+.nav {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(255,255,255,0.97); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--rule);
+  padding: 0 5vw; height: 62px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo { display: flex; align-items: center; gap: 9px; font-family: 'DM Serif Display', serif; font-size: 1.15rem; color: var(--navy); text-decoration: none; flex-shrink: 0; }
+.nav-logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--saffron); }
+.nav-links { display: flex; gap: 2px; align-items: center; }
+.nav-links a { font-size: 0.82rem; font-weight: 500; color: var(--ink-2); text-decoration: none; padding: 6px 13px; border-radius: 6px; transition: background 0.15s, color 0.15s; white-space: nowrap; }
+.nav-links a:hover { background: var(--rule-2); color: var(--navy); }
+.nav-cta { background: var(--navy) !important; color: #fff !important; padding: 7px 18px !important; border-radius: 6px !important; font-weight: 600 !important; }
+.nav-cta:hover { background: var(--blue) !important; }
+/* Hamburger */
+.nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; border: none; background: none; }
+.nav-toggle span { display: block; width: 22px; height: 2px; background: var(--navy); border-radius: 2px; transition: all 0.25s; }
+.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+/* Mobile drawer */
+.nav-drawer {
+  display: none; flex-direction: column; gap: 2px;
+  position: absolute; top: 62px; left: 0; right: 0;
+  background: var(--white); border-bottom: 1px solid var(--rule);
+  padding: 12px 5vw 16px; z-index: 199;
+  box-shadow: 0 8px 24px rgba(15,45,82,0.08);
+}
+.nav-drawer.open { display: flex; }
+.nav-drawer a { font-size: 0.9rem; font-weight: 500; color: var(--ink-2); text-decoration: none; padding: 9px 12px; border-radius: 7px; transition: background 0.15s; }
+.nav-drawer a:hover { background: var(--rule-2); color: var(--navy); }
+.nav-drawer .nav-cta { background: var(--navy) !important; color: #fff !important; text-align: center; margin-top: 4px; }
+
+/* ══ HERO ══ */
+.hero { background: var(--navy); color: #fff; padding: 80px 5vw 72px; position: relative; overflow: hidden; }
+.hero-grid { background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 48px 48px; position: absolute; inset: 0; }
+.hero-inner { position: relative; max-width: 860px; margin: 0 auto; text-align: center; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14); border-radius: 100px; padding: 5px 16px; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.75); margin-bottom: 28px; }
+.hero-eyebrow span { color: #ffd580; }
+.hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.2rem, 6vw, 3.8rem); line-height: 1.12; letter-spacing: -0.02em; margin-bottom: 20px; color: #fff; }
+.hero h1 em { font-style: italic; color: #ffd580; }
+.hero-sub { font-size: 1.05rem; font-weight: 300; color: rgba(255,255,255,0.72); max-width: 580px; margin: 0 auto 44px; line-height: 1.75; }
+.hero-stats { display: flex; justify-content: center; gap: 0; border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; overflow: hidden; max-width: 620px; margin: 0 auto; }
+.hero-stat { flex: 1; padding: 20px 16px; border-right: 1px solid rgba(255,255,255,0.12); }
+.hero-stat:last-child { border-right: none; }
+.hero-stat .n { font-family: 'DM Serif Display', serif; font-size: 1.9rem; color: #ffd580; display: block; line-height: 1; }
+.hero-stat .l { font-size: 0.72rem; color: rgba(255,255,255,0.55); display: block; margin-top: 5px; text-transform: uppercase; letter-spacing: 0.05em; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+.hero-inner > * { animation: fadeUp 0.5s ease backwards; }
+.hero-eyebrow { animation-delay: 0.05s; } .hero h1 { animation-delay: 0.15s; } .hero-sub { animation-delay: 0.25s; } .hero-stats { animation-delay: 0.35s; }
+
+/* ══ LAYOUT ══ */
+.container { max-width: 1040px; margin: 0 auto; padding: 0 5vw; }
+.section { padding: 72px 0; border-bottom: 1px solid var(--rule); }
+.section:last-of-type { border-bottom: none; }
+.section-alt { background: var(--page); }
+.section-header { text-align: center; margin-bottom: 48px; }
+.label { display: inline-flex; align-items: center; gap: 6px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--saffron); margin-bottom: 12px; }
+.label-line { width: 20px; height: 1.5px; background: var(--saffron); }
+.section-title { font-family: 'DM Serif Display', serif; font-size: clamp(1.75rem, 4vw, 2.4rem); line-height: 1.2; letter-spacing: -0.02em; color: var(--navy); margin-bottom: 12px; }
+.section-sub { font-size: 0.95rem; color: var(--ink-3); max-width: 560px; line-height: 1.75; margin: 0 auto; }
+
+/* ══ SERVICE CARDS — blue border, centered ══ */
+.service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.service-card {
+  background: var(--white);
+  border: 2px solid var(--blue-border);
+  border-radius: 14px; padding: 32px 24px 28px;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  transition: box-shadow 0.2s, transform 0.2s;
+  position: relative; overflow: hidden;
+}
+.service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--blue); }
+.service-card:hover { box-shadow: 0 10px 36px rgba(26,95,180,0.15); transform: translateY(-4px); }
+.sc-icon { width: 64px; height: 64px; background: var(--blue-pale); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+.sc-icon svg { width: 28px; height: 28px; }
+.service-card h3 { font-size: 0.95rem; font-weight: 600; color: var(--navy); margin-bottom: 10px; }
+.service-card p { font-size: 0.83rem; color: var(--ink-3); line-height: 1.65; flex: 1; margin-bottom: 22px; }
+.btn-primary { display: inline-flex; align-items: center; gap: 6px; background: var(--navy); color: #fff; font-size: 0.82rem; font-weight: 600; padding: 9px 22px; border-radius: 8px; text-decoration: none; transition: background 0.15s; align-self: center; }
+.btn-primary:hover { background: var(--blue); }
+.btn-primary svg { width: 13px; height: 13px; }
+
+/* ══ INTRO SECTION ══ */
+.intro-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+.intro-text p { font-size: 0.95rem; color: var(--ink-2); line-height: 1.85; margin-bottom: 16px; }
+.intro-text p:last-child { margin-bottom: 0; }
+.intro-side { display: flex; flex-direction: column; gap: 14px; }
+.info-card { background: var(--page); border: 1.5px solid var(--blue-border); border-radius: 10px; padding: 16px 18px; display: flex; align-items: flex-start; gap: 14px; }
+.info-card-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--navy); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.info-card-body h5 { font-size: 0.82rem; font-weight: 600; color: var(--navy); margin-bottom: 2px; }
+.info-card-body p { font-size: 0.8rem; color: var(--ink-3); line-height: 1.5; }
+.highlight { background: var(--teal-pale); border-left: 3px solid var(--teal); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 20px 0 0; font-size: 0.88rem; color: var(--teal); line-height: 1.7; }
+.highlight strong { color: var(--teal); font-weight: 600; }
+
+/* ══ QUICK TABLE ══ */
+.qt-wrap { border: 2px solid var(--blue-border); border-radius: 12px; overflow: hidden; margin-top: 40px; }
+.qt-wrap table { width: 100%; border-collapse: collapse; }
+.qt-wrap thead th { background: var(--navy); color: rgba(255,255,255,0.85); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; padding: 14px 20px; text-align: left; }
+.qt-wrap td { padding: 13px 20px; font-size: 0.88rem; border-bottom: 1px solid var(--rule); vertical-align: middle; color: var(--ink-2); }
+.qt-wrap tr:last-child td { border-bottom: none; }
+.qt-wrap tr:hover td { background: var(--blue-pale); }
+.qt-wrap td:first-child { font-weight: 500; color: var(--navy); }
+.qt-wrap a { color: var(--blue); text-decoration: none; font-weight: 500; }
+.qt-wrap a:hover { text-decoration: underline; }
+.form-badge { display: inline-block; background: var(--blue-pale); color: var(--blue); font-size: 0.75rem; font-weight: 600; padding: 3px 10px; border-radius: 4px; }
+
+/* ══ BENEFITS — blue border, centered ══ */
+.benefits-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.benefit-card { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; background: var(--white); border: 2px solid var(--blue-border); border-radius: 14px; padding: 28px 24px; transition: box-shadow 0.2s, transform 0.2s; }
+.benefit-card:hover { box-shadow: 0 8px 28px rgba(26,95,180,0.12); transform: translateY(-3px); }
+.benefit-icon { width: 52px; height: 52px; border-radius: 14px; background: var(--saffron-pale); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.benefit-icon svg { width: 24px; height: 24px; }
+.benefit-body h5 { font-size: 0.92rem; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+.benefit-body p { font-size: 0.83rem; color: var(--ink-3); line-height: 1.65; }
+
+/* ══ STEPS ══ */
+.steps-list { display: flex; flex-direction: column; gap: 0; }
+.step { display: grid; grid-template-columns: 52px 1fr; gap: 0 24px; align-items: start; padding-bottom: 28px; position: relative; }
+.step::before { content: ''; position: absolute; top: 52px; left: 25px; width: 2px; height: calc(100% - 28px); background: var(--rule); }
+.step:last-child::before { display: none; }
+.step-num { width: 52px; height: 52px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: #fff; flex-shrink: 0; position: relative; z-index: 1; }
+.step-body { padding-top: 12px; }
+.step-body h4 { font-size: 0.95rem; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+.step-body p { font-size: 0.88rem; color: var(--ink-2); line-height: 1.7; }
+.step-body a { color: var(--blue); }
+.step-note { margin-top: 10px; background: var(--saffron-pale); border-left: 3px solid var(--saffron); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.82rem; color: var(--ink-2); }
+
+/* ══ ELIGIBILITY ══ */
+.pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+.pill { display: inline-flex; align-items: center; gap: 8px; background: var(--blue-pale); color: var(--navy); font-size: 0.82rem; font-weight: 500; padding: 7px 14px; border-radius: 100px; border: 1px solid rgba(26,95,180,0.2); }
+.pill svg { width: 13px; height: 13px; }
+.docs-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 14px; }
+.doc-item { display: flex; align-items: center; gap: 10px; background: var(--page); border: 1px solid var(--rule); border-radius: 8px; padding: 11px 14px; font-size: 0.83rem; color: var(--ink-2); }
+.doc-item svg { width: 15px; height: 15px; flex-shrink: 0; color: var(--teal); }
+
+/* ══ FEES — blue border, centered ══ */
+.fees-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.fee-card { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 22px 20px; background: var(--white); border: 2px solid var(--blue-border); border-radius: 12px; transition: box-shadow 0.15s; }
+.fee-card:hover { background: var(--blue-pale); box-shadow: 0 4px 16px rgba(26,95,180,0.1); }
+.fee-amount { font-family: 'DM Serif Display', serif; font-size: 1.6rem; color: var(--saffron); line-height: 1; margin-bottom: 8px; }
+.fee-name { font-size: 0.83rem; color: var(--ink-2); }
+
+/* ══ ECHALLAN STEPS — blue border ══ */
+.challan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.challan-step { background: var(--white); border: 2px solid var(--blue-border); border-radius: 12px; padding: 22px 20px; text-align: center; position: relative; }
+.challan-step-num { font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--blue-pale); position: absolute; top: 10px; right: 14px; line-height: 1; }
+.challan-step h5 { font-size: 0.88rem; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+.challan-step p { font-size: 0.82rem; color: var(--ink-3); line-height: 1.65; }
+.challan-step a { color: var(--blue); font-weight: 500; }
+.challan-alert { background: var(--saffron-pale); border: 2px solid var(--saffron); border-radius: 12px; padding: 22px 20px; text-align: center; }
+.challan-alert h5 { font-size: 0.88rem; font-weight: 600; color: var(--saffron); margin-bottom: 8px; }
+.challan-alert p { font-size: 0.82rem; color: var(--ink-2); line-height: 1.65; }
+
+/* ══ CONTACT CARDS — blue border ══ */
+.contact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.contact-card { background: var(--white); border: 2px solid var(--blue-border); border-radius: 12px; padding: 22px 20px; }
+.contact-card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.contact-icon { width: 34px; height: 34px; border-radius: 8px; background: var(--blue-pale); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.contact-card h5 { font-size: 0.88rem; font-weight: 600; color: var(--navy); }
+.contact-card p { font-size: 0.82rem; color: var(--ink-3); line-height: 1.55; margin-bottom: 10px; }
+.contact-email { font-size: 0.82rem; font-weight: 500; color: var(--blue); background: var(--blue-pale); padding: 7px 12px; border-radius: 6px; word-break: break-all; display: block; }
+
+/* ══ FAQ ══ */
+.faq-list { display: flex; flex-direction: column; gap: 12px; }
+.faq-item { border: 2px solid var(--blue-border); border-radius: 12px; overflow: hidden; background: var(--white); }
+.faq-q { padding: 17px 22px; font-size: 0.93rem; font-weight: 600; color: var(--navy); display: flex; align-items: flex-start; gap: 14px; }
+.faq-num { background: var(--navy); color: #fff; font-size: 0.7rem; font-weight: 700; padding: 3px 9px; border-radius: 4px; flex-shrink: 0; margin-top: 1px; }
+.faq-a { padding: 0 22px 17px 54px; font-size: 0.88rem; color: var(--ink-3); line-height: 1.75; }
+.faq-a a { color: var(--blue); }
+
+/* ══ CTA SECTION ══ */
+.cta-section { background: var(--navy); padding: 72px 5vw; text-align: center; }
+.cta-section h2 { font-family: 'DM Serif Display', serif; font-size: clamp(1.7rem, 4vw, 2.6rem); color: #fff; margin-bottom: 14px; letter-spacing: -0.02em; }
+.cta-section > .container > p { color: rgba(255,255,255,0.65); font-size: 0.95rem; margin-bottom: 36px; }
+.cta-buttons { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.btn-cta-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--saffron); color: #fff; font-size: 0.88rem; font-weight: 600; padding: 12px 28px; border-radius: 8px; text-decoration: none; transition: opacity 0.15s; }
+.btn-cta-primary:hover { opacity: 0.88; }
+.btn-cta-secondary { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.9); border: 1px solid rgba(255,255,255,0.2); font-size: 0.88rem; font-weight: 500; padding: 12px 28px; border-radius: 8px; text-decoration: none; transition: background 0.15s; }
+.btn-cta-secondary:hover { background: rgba(255,255,255,0.18); }
+
+/* ══ SHARE — 3 buttons, contained ══ */
+.share-block { margin-top: 44px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; }
+.share-block p { color: rgba(255,255,255,0.45); font-size: 0.8rem; margin-bottom: 14px; }
+.share-row { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.share-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 24px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: opacity 0.15s; white-space: nowrap; }
+.share-btn:hover { opacity: 0.87; }
+.share-fb { background: #1877F2; color: #fff; }
+.share-wa { background: #25D366; color: #fff; }
+.share-tw { background: #1DA1F2; color: #fff; }
+
+/* ══ FOOTER ══ */
+.footer { background: var(--ink); color: rgba(255,255,255,0.75); }
+.footer-top { padding: 56px 5vw 40px; max-width: 1040px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
+.footer-brand .nav-logo { color: #fff; margin-bottom: 14px; display: inline-flex; }
+.footer-brand p { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.75; max-width: 280px; }
+.footer-col h6 { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 14px; }
+.footer-col a { display: block; font-size: 0.84rem; color: rgba(255,255,255,0.65); text-decoration: none; margin-bottom: 9px; transition: color 0.15s; }
+.footer-col a:hover { color: #fff; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding: 20px 5vw; max-width: 1040px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.footer-disclaimer { font-size: 0.77rem; color: rgba(255,255,255,0.35); line-height: 1.65; max-width: 700px; }
+.footer-disclaimer a { color: rgba(255,255,255,0.5); }
+.footer-copy { font-size: 0.77rem; color: rgba(255,255,255,0.3); white-space: nowrap; }
+
+/* ══ RESPONSIVE ══ */
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: flex; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+@media (max-width: 768px) {
+  .service-grid { grid-template-columns: 1fr 1fr; }
+  .benefits-grid { grid-template-columns: 1fr; }
+  .fees-grid { grid-template-columns: 1fr; }
+  .challan-grid { grid-template-columns: 1fr 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .intro-cols { grid-template-columns: 1fr; gap: 32px; }
+  .hero-stats { flex-direction: column; border: none; gap: 8px; }
+  .hero-stat { border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; display: flex; align-items: center; gap: 16px; padding: 12px 18px; }
+}
+@media (max-width: 540px) {
+  .service-grid { grid-template-columns: 1fr; }
+  .challan-grid { grid-template-columns: 1fr; }
+  .docs-list { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; gap: 28px; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .cta-buttons { flex-direction: column; align-items: center; }
+}
+</style>
 </head>
 <body>
 
-<!-- Header -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container">
-        <a class="navbar-brand" href="#">Parivahan Sewa</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="menu">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#dl">Driving Licence</a></li>
-                <li class="nav-item"><a class="nav-link" href="#vehicle">Vehicle Services</a></li>
-                <li class="nav-item"><a class="nav-link" href="#status">Status</a></li>
-                <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
-            </ul>
-        </div>
-    </div>
+<!-- ══ NAV ══ -->
+<nav class="nav">
+  <a class="nav-logo" href="https://parivahansewas.com/">
+    <div class="nav-logo-dot"></div>Parivahan Sewa
+  </a>
+  <div class="nav-links">
+    <a href="#overview">Overview</a>
+    <a href="#licence">Licences</a>
+    <a href="#vehicle">Vehicles</a>
+    <a href="#apply-dl">Apply DL</a>
+    <a href="#fees">Fees</a>
+    <a href="#echallan">eChallan</a>
+    <a href="#forms">Forms</a>
+    <a href="#support">Support</a>
+    <a href="#faq">FAQ</a>
+    <a href="https://parivahan.gov.in/" target="_blank" class="nav-cta">Open Portal ↗</a>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="nav-drawer" id="navDrawer">
+  <a href="#overview">Overview</a>
+  <a href="#licence">Licence Services</a>
+  <a href="#vehicle">Vehicle Services</a>
+  <a href="#apply-dl">Apply DL</a>
+  <a href="#fees">Fee Structure</a>
+  <a href="#echallan">eChallan</a>
+  <a href="#forms">Official Forms</a>
+  <a href="#support">Support</a>
+  <a href="#faq">FAQ</a>
+  <a href="https://parivahan.gov.in/" target="_blank" class="nav-cta">Open Portal ↗</a>
+</div>
 
-<!-- Hero Section -->
-<section id="home" class="bg-light py-5">
-    <div class="container text-center">
-        <h1 class="fw-bold">Parivahan Sewa Portal</h1>
-        <p class="lead">Digital Transport Services by Ministry of Road Transport & Highways (MoRTH)</p>
-        <p>Parivahan Sewa is an official online portal launched by the Government of India to provide vehicle-related and driving licence services to citizens in a transparent and digital manner.</p>
+<!-- ══ §1 HERO ══ -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#ffd580" stroke-width="1.5"/><circle cx="6" cy="6" r="2" fill="#ffd580"/></svg>
+      Ministry of Road Transport &amp; Highways &nbsp;·&nbsp; <span>Government of India</span>
     </div>
+    <h1>Everything About<br><em>Parivahan Sewa</em><br>In One Place</h1>
+    <p class="hero-sub">Apply for a driving licence, renew your RC, pay eChallan, and access every RTO service online — no queues, no agents, fully digital.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="n">36+</span><span class="l">States &amp; UTs</span></div>
+      <div class="hero-stat"><span class="n">20+</span><span class="l">Online Services</span></div>
+      <div class="hero-stat"><span class="n">24/7</span><span class="l">Portal Access</span></div>
+      <div class="hero-stat"><span class="n">100%</span><span class="l">Govt. Backed</span></div>
+    </div>
+  </div>
 </section>
 
-<!-- About -->
-<section class="py-5">
-    <div class="container">
-        <h2>About Parivahan Sewa</h2>
-        <p>
-            Parivahan Sewa is a centralized transport service platform that connects Regional Transport Offices (RTOs) across India. The portal helps citizens access transport-related services without visiting RTO offices repeatedly.
-        </p>
-        <p>
-            Through this portal, users can apply for driving licences, register vehicles, check RC and DL status, download documents, apply for permits, and pay transport-related taxes and fees online.
-        </p>
+<!-- ══ §2 OVERVIEW ══ -->
+<section class="section" id="overview">
+  <div class="container">
+    <div class="section-header">
+      <div class="label"><div class="label-line"></div>Overview</div>
+      <h2 class="section-title">What Is Parivahan Sewa?</h2>
+      <p class="section-sub">India's centralised digital gateway for all road transport citizen services, built and maintained by MoRTH and NIC.</p>
     </div>
+    <div class="intro-cols">
+      <div class="intro-text">
+        <p>For decades, every interaction with India's Regional Transport Offices demanded physical visits, stacks of paperwork, and full working days lost in queues. <strong>Parivahan Sewa</strong> — launched by the Ministry of Road Transport and Highways in partnership with the National Informatics Centre — permanently changed that reality.</p>
+        <p>The platform operates through two flagship sub-portals. <strong>VAHAN</strong> manages everything related to motor vehicles: registration, road tax, fitness certificates, permits, and ownership transfers. <strong>Sarathi</strong> handles everything related to the driver: learner's licences, permanent DLs, renewals, duplicates, and test slot bookings.</p>
+        <p>Both systems draw from and contribute to a single unified national transport database, ensuring records remain consistent regardless of which state or RTO you interact with. Alongside these, <strong>eChallan</strong> digitises traffic fine collection, while the <strong>mParivahan</strong> app stores your RC and DL as legally valid documents on your phone.</p>
+        <div class="highlight"><strong>Scale:</strong> Parivahan Sewa processes tens of millions of transactions annually — spanning new vehicle registrations, licence applications, tax collections, and challan settlements — making it one of the largest citizen-facing government digital platforms in South Asia.</div>
+      </div>
+      <div class="intro-side">
+        <div class="info-card">
+          <div class="info-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+          <div class="info-card-body"><h5>Primary Portals</h5><p>parivahan.gov.in &amp; sarathi.parivahan.gov.in</p></div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div class="info-card-body"><h5>Managed By</h5><p>Ministry of Road Transport &amp; Highways (MoRTH), Govt. of India</p></div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+          <div class="info-card-body"><h5>Coverage</h5><p>All 36 states and union territories — 24×7 on all devices</p></div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div class="info-card-body"><h5>Who Can Use It</h5><p>Citizens, dealers, RTOs, insurers, and transport operators</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- Driving Licence Services -->
-<section id="dl" class="bg-light py-5">
-    <div class="container">
-        <h2>Driving Licence Services</h2>
-        <ul>
-            <li>Apply for Learner Licence (LL)</li>
-            <li>Apply for Permanent Driving Licence (DL)</li>
-            <li>DL Renewal</li>
-            <li>Duplicate Driving Licence</li>
-            <li>Change of Address in DL</li>
-            <li>International Driving Permit (IDP)</li>
-            <li>Slot Booking for Driving Test</li>
-        </ul>
-        <p>
-            Applicants can complete most of the driving licence process online, including form submission, fee payment, and appointment booking.
-        </p>
+<!-- ══ §3 LICENCE SERVICES ══ -->
+<section class="section section-alt" id="licence">
+  <div class="container">
+    <div class="section-header">
+      <div class="label"><div class="label-line"></div>Sarathi Portal</div>
+      <h2 class="section-title">Licence Related Services</h2>
+      <p class="section-sub">From your first learner's licence to international permits — manage every stage of your driving credentials online.</p>
     </div>
+    <div class="service-grid">
+      <div class="service-card">
+        <div class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1a5fb4" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M7 15h4M7 11h6"/><circle cx="16" cy="11" r="2"/></svg></div>
+        <h3>Drivers &amp; Learners Licence</h3>
+        <p>Apply fresh, download your DL instantly, renew before expiry, or add a new vehicle class — entirely paperless through Sarathi.</p>
+        <a href="https://sarathi.parivahan.gov.in/sarathiservice/stateSelection.do" target="_blank" class="btn-primary">Get Started <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="service-card">
+        <div class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1a5fb4" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <h3>Driving School Licence</h3>
+        <p>Institutions can apply for, renew, or modify their official Driving Training School accreditation through the portal.</p>
+        <a href="https://sarathi.parivahan.gov.in/sarathiservice/stateSelection.do" target="_blank" class="btn-primary">Apply Now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="service-card">
+        <div class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1a5fb4" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M8 14h.01M12 14h.01M16 14h.01"/></svg></div>
+        <h3>Book Test Appointment</h3>
+        <p>Book, reschedule, or cancel driving test and RTO appointment slots online without stepping outside your door.</p>
+        <a href="https://sarathi.parivahan.gov.in/sarathiservice/stateSelection.do" target="_blank" class="btn-primary">Book Slot <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="service-card">
+        <div class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1a5fb4" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+        <h3>Check DL Status</h3>
+        <p>Instantly verify whether your DL application is pending, approved, dispatched, or requires any additional action.</p>
+        <a href="https://parivahan.gov.in/rcdlstatus/?pur_cd=101" target="_blank" class="btn-primary">Check Status <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="service-card">
+        <div class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1a5fb4" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
+        <h3>Duplicate DL</h3>
+        <p>Lost, stolen, or damaged licence? Apply for a replacement online and receive your duplicate at your registered address.</p>
+        <a href="https://sarathi.parivahan.gov.in/sarathiservice/stateSelection.do" target="_blank" class="btn-primary">Apply <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="service-card">
+        <div class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1a5fb4" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+        <h3>Sarathi Dashboard</h3>
+        <p>A single dashboard for RTOs, dealers, and citizens to track all active licences, permits, and pending applications.</p>
+        <a href="https://sarathi.parivahan.gov.in/sarathiservice/stateSelection.do" target="_blank" class="btn-primary">Open Dashboard <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- Vehicle Services -->
-<section id="vehicle" class="py-5">
-    <div class="container">
-        <h2>Vehicle Related Services</h2>
-        <ul>
-            <li>New Vehicle Registration</li>
-            <li>Transfer of Ownership</li>
-            <li>Duplicate Registration Certificate (RC)</li>
-            <li>Address Change in RC</li>
-            <li>RC Renewal</li>
-            <li>Vehicle Hypothecation Entry / Termination</li>
-            <li>Vehicle Tax Payment</li>
-            <li>Fancy Number Booking</li>
-            <li>Fitness Certificate</li>
-        </ul>
-        <p>
-            Vehicle owners can manage all registration and ownership services digitally using <a href="https://parivahans.net"> Parivahan Sewa</a> .
-        </p>
+<!-- ══ §4 VEHICLE SERVICES ══ -->
+<section class="section" id="vehicle">
+  <div class="container">
+    <div class="section-header">
+      <div class="label"><div class="label-line"></div>VAHAN Portal</div>
+      <h2 class="section-title">Vehicle Related Services</h2>
+      <p class="section-sub">Register a new vehicle, transfer ownership, pay road tax, and verify your RC status — all through VAHAN.</p>
     </div>
+    <div class="service-grid">
+      <div class="service-card">
+        <div class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1a5fb4" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+        <h3>Vehicle Registration (RC)</h3>
+        <p>Register a new vehicle, renew your RC certificate, apply for a duplicate, or update your address on the registration record.</p>
+        <a href="https://parivahan.gov.in/parivahan//node/1978" target="_blank" class="btn-primary">Register <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="service-card">
+        <div class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1a5fb4" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <h3>Fancy Number Allocation</h3>
+        <p>Bid for and reserve a personalised, memorable registration number through the government's official e-auction system.</p>
+        <a href="https://fancy.parivahan.gov.in/fancy/faces/public/login.xhtml" target="_blank" class="btn-primary">Bid Now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="service-card">
+        <div class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1a5fb4" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+        <h3>National Permit</h3>
+        <p>Apply, renew, or verify national and state transport permits for goods vehicles and commercial transport operators.</p>
+        <a href="https://vahan.parivahan.gov.in/npermit/" target="_blank" class="btn-primary">Get Permit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="service-card">
+        <div class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1a5fb4" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <h3>Road Tax Payment</h3>
+        <p>Calculate and pay your state road tax online instantly, with a digital receipt that is valid across all RTOs nationwide.</p>
+        <a href="https://parivahan.gov.in/parivahan//node/2612" target="_blank" class="btn-primary">Pay Tax <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="service-card">
+        <div class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1a5fb4" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+        <h3>eChallan — Pay Fines</h3>
+        <p>Check all pending traffic challans against your DL or vehicle number and settle them securely online — no court visit needed.</p>
+        <a href="https://echallan.parivahan.gov.in/index/accused-challan" target="_blank" class="btn-primary">Pay Challan <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="service-card">
+        <div class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1a5fb4" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+        <h3>VAHAN Dashboard</h3>
+        <p>The official portal for dealers, RTOs, and citizens to access national vehicle registration data and process service requests.</p>
+        <a href="https://vahan.parivahan.gov.in/vahan/vahan/ui/login/login.xhtml" target="_blank" class="btn-primary">Open VAHAN <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- Permit Services -->
-<section class="bg-light py-5">
-    <div class="container">
-        <h2>Permit & Transport Services</h2>
-        <ul>
-            <li>National Permit</li>
-            <li>State Permit</li>
-            <li>Temporary Permit</li>
-            <li>Goods Carrier Permit</li>
-            <li>Passenger Vehicle Permit</li>
-            <li>Permit Renewal</li>
-        </ul>
+<!-- ══ §5 BENEFITS ══ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <div class="label"><div class="label-line"></div>Benefits</div>
+      <h2 class="section-title">Why Parivahan Sewa Matters</h2>
+      <p class="section-sub">Real, measurable advantages that impact millions of Indian citizens every single day.</p>
     </div>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#e8820c" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div class="benefit-body"><h5>Saves Hours, Not Just Minutes</h5><p>Tasks that once required a full-day RTO visit — licence renewal, ownership transfer, tax payment — now take under 20 minutes from any internet-connected device.</p></div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#e8820c" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <div class="benefit-body"><h5>Complete Application Transparency</h5><p>Every submission generates a unique reference number. Track your application's exact status in real time — no more chasing clerks for updates.</p></div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#e8820c" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+        <div class="benefit-body"><h5>Access Anytime, from Anywhere</h5><p>The web portal and mParivahan app are available 24×7 from any device. A remote village and a metro city now have equal access to every transport service.</p></div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#e8820c" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <div class="benefit-body"><h5>Lower Total Cost</h5><p>Eliminate travel expenses, agent commissions, and unofficial payments. All fees are government-prescribed and paid directly online at published rates.</p></div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#e8820c" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+        <div class="benefit-body"><h5>Unified National Database</h5><p>Your DL, RC, challans, and permits are stored in one linked national system — verifiable by any RTO, traffic police unit, or insurer across India.</p></div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#e8820c" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="benefit-body"><h5>Built-In Fraud Prevention</h5><p>Fully digitised records with Aadhaar linking make it virtually impossible to issue, hold, or use fake transport documents — protecting citizens and enforcement alike.</p></div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- Status Section -->
-<section id="status" class="py-5">
-    <div class="container">
-        <h2>Check Application Status</h2>
-        <p>
-            Users can track the status of their applications online using:
-        </p>
-        <ul>
-            <li>Driving Licence Application Number</li>
-            <li>Vehicle Registration Number</li>
-            <li>Challan Number</li>
-        </ul>
-        <p>
-            Status tracking helps citizens stay updated without visiting the RTO office.
-        </p>
+<!-- ══ §6 HOW TO APPLY DL ══ -->
+<section class="section" id="apply-dl">
+  <div class="container">
+    <div class="section-header">
+      <div class="label"><div class="label-line"></div>Step-by-Step Guide</div>
+      <h2 class="section-title">How to Apply for a Driving Licence Online</h2>
+      <p class="section-sub">The complete two-stage Sarathi Parivahan process — from learner's licence to permanent DL.</p>
     </div>
+
+    <p style="font-size:0.9rem; font-weight:600; color:var(--navy); margin-bottom:6px;">Stage 1 — Learner's Licence (LL)</p>
+    <p style="font-size:0.85rem; color:var(--ink-3); margin-bottom:28px;">Completed entirely online. Valid 6 months — hold for at least 30 days before applying for a Permanent DL.</p>
+    <div class="steps-list">
+      <div class="step"><div class="step-num">1</div><div class="step-body"><h4>Open Sarathi &amp; Select Your State</h4><p>Navigate to <a href="https://sarathi.parivahan.gov.in/" target="_blank">sarathi.parivahan.gov.in</a>. Select your home state from the dropdown — choosing correctly is essential to reaching the right RTO's system.</p></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body"><h4>Choose "Apply for Learner Licence"</h4><p>Select the Learner Licence option from the state menu. Log in with your mobile number or create an account linked to your Aadhaar for identity verification.</p></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body"><h4>Fill the Application Form</h4><p>Enter your full legal name, date of birth, address, blood group, and emergency contact. Every detail must exactly match your identity documents — discrepancies cause delays or rejection.</p></div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-body"><h4>Upload Supporting Documents</h4><p>Scan and upload clear copies of identity proof, address proof, age proof, and a recent passport-size photograph on a white background — within the portal's file size limits.</p></div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-body"><h4>Pay the ₹200 Fee Online</h4><p>Complete payment via UPI, net banking, or card. Download and save your payment acknowledgement — it is your reference for all future correspondence.</p></div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-body"><h4>Clear the Traffic Knowledge Test</h4><p>Most states offer the mandatory MCQ test within the Sarathi portal — covering road signs, traffic rules, and safe driving practices. Minimum passing score: 57%.</p></div></div>
+      <div class="step"><div class="step-num">7</div><div class="step-body"><h4>Receive Your Learner's Licence</h4><p>Upon passing, your LL is generated digitally and sent to your registered email. Physical LL cards are dispatched to your address within a few working days where applicable.</p><div class="step-note">Hold your LL for at least 30 days — and within its 6-month validity — before applying for a Permanent DL.</div></div></div>
+    </div>
+
+    <p style="font-size:0.9rem; font-weight:600; color:var(--navy); margin: 40px 0 6px;">Stage 2 — Permanent Driving Licence</p>
+    <p style="font-size:0.85rem; color:var(--ink-3); margin-bottom:28px;">Requires one physical RTO visit for the practical test. DL dispatched by post within 7–14 working days.</p>
+    <div class="steps-list">
+      <div class="step"><div class="step-num">1</div><div class="step-body"><h4>Return to Sarathi &amp; Select "Apply for DL"</h4><p>Enter your LL number, date of birth, and complete OTP verification. Upload your LL copy, address proof, and a fresh photograph.</p></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body"><h4>Pay ₹200 DL Fee + ₹300 Test Fee</h4><p>Complete both payments online and download your official receipt before booking your test appointment.</p></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body"><h4>Book Your RTO Test Appointment</h4><p>Use the Sarathi slot-booking system to schedule your practical driving test. You can reschedule online up to 24 hours before your appointment.<div class="step-note">Metro RTOs fill weeks in advance — try an adjoining district RTO for an earlier date.</div></p></div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-body"><h4>Attend the RTO &amp; Pass the Practical Test</h4><p>Carry all original documents and your printed application receipt. After passing, your Permanent DL is dispatched to your registered address within 7–14 working days.</p></div></div>
+    </div>
+
+    <div style="margin-top:36px;">
+      <p style="font-size:0.9rem; font-weight:600; color:var(--navy); margin-bottom:14px;">Eligibility Requirements</p>
+      <div class="pills">
+        <div class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>16 yrs — Gearless &lt;50cc (parental consent)</div>
+        <div class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>18 yrs — All motorcycles, cars &amp; LMVs</div>
+        <div class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>20 yrs — Commercial transport vehicles</div>
+        <div class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Physical &amp; mental fitness (Form 1 / 1A)</div>
+        <div class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Pass traffic knowledge test</div>
+      </div>
+      <p style="font-size:0.9rem; font-weight:600; color:var(--navy); margin: 28px 0 14px;">Documents Required</p>
+      <div class="docs-list">
+        <div class="doc-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Identity Proof — Aadhaar, Passport, Voter ID, or PAN</div>
+        <div class="doc-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Address Proof — Aadhaar, Passport, or utility bill (&lt;3 months)</div>
+        <div class="doc-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Age Proof — Birth certificate or Class 10 marksheet</div>
+        <div class="doc-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Passport-size Photograph on white background</div>
+        <div class="doc-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M7 15h4M7 11h6"/></svg>Learner's Licence (for Permanent DL only)</div>
+        <div class="doc-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Form 1 or 1A — fitness declaration / medical certificate</div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- Documents -->
-<section class="bg-light py-5">
-    <div class="container">
-        <h2>Documents Required</h2>
-        <ul>
-            <li>Aadhaar Card</li>
-            <li>Address Proof</li>
-            <li>Age Proof</li>
-            <li>Passport Size Photograph</li>
-            <li>Medical Certificate (if applicable)</li>
-            <li>Vehicle Insurance</li>
-            <li>PUC Certificate</li>
-        </ul>
+<!-- ══ §7 FEES ══ -->
+<section class="section section-alt" id="fees">
+  <div class="container">
+    <div class="section-header">
+      <div class="label"><div class="label-line"></div>Government Fee Schedule</div>
+      <h2 class="section-title">Driving Licence Fee Structure 2025</h2>
+      <p class="section-sub">All fees are government-prescribed and payable directly through Sarathi Parivahan — no agent or middleman required.</p>
     </div>
+    <div class="fees-grid">
+      <div class="fee-card"><div class="fee-amount">₹200</div><div class="fee-name">Learner's Licence — Fresh Application</div></div>
+      <div class="fee-card"><div class="fee-amount">₹200</div><div class="fee-name">Permanent DL — Fresh Issue</div></div>
+      <div class="fee-card"><div class="fee-amount">₹300</div><div class="fee-name">Practical Driving Test Fee (per attempt)</div></div>
+      <div class="fee-card"><div class="fee-amount">₹200</div><div class="fee-name">DL Renewal (within grace period)</div></div>
+      <div class="fee-card"><div class="fee-amount">₹250</div><div class="fee-name">Duplicate DL — Lost, Stolen, or Damaged</div></div>
+      <div class="fee-card"><div class="fee-amount">₹500</div><div class="fee-name">Adding a New Vehicle Class to Existing DL</div></div>
+      <div class="fee-card"><div class="fee-amount">₹1,000</div><div class="fee-name">International Driving Permit (IDP)</div></div>
+      <div class="fee-card"><div class="fee-amount">₹300+</div><div class="fee-name">Late Renewal — After Expiry Grace Period</div></div>
+    </div>
+  </div>
 </section>
 
-<!-- Benefits -->
-<section class="py-5">
-    <div class="container">
-        <h2>Benefits of Parivahan Sewa</h2>
-        <ul>
-            <li>Online services available 24×7</li>
-            <li>Reduced RTO visits</li>
-            <li>Transparent process</li>
-            <li>Digital payments</li>
-            <li>Nationwide uniform system</li>
-            <li>Time-saving and paperless</li>
-        </ul>
+<!-- ══ §8 ECHALLAN ══ -->
+<section class="section" id="echallan">
+  <div class="container">
+    <div class="section-header">
+      <div class="label"><div class="label-line"></div>Traffic Fines</div>
+      <h2 class="section-title">How to Check &amp; Pay Your eChallan</h2>
+      <p class="section-sub">Traffic challans in most Indian states are now issued exclusively in digital format. Clear yours in minutes, without a court visit.</p>
     </div>
+    <div class="challan-grid">
+      <div class="challan-step"><div class="challan-step-num">01</div><h5>Open the eChallan Portal</h5><p>Go to <a href="https://parivahan.gov.in/" target="_blank">parivahan.gov.in</a> → Online Services → eChallan, or visit <a href="https://echallan.parivahan.gov.in/" target="_blank">echallan.parivahan.gov.in</a> directly.</p></div>
+      <div class="challan-step"><div class="challan-step-num">02</div><h5>Click "Challan Status"</h5><p>Under "Check Online Services," click <strong>Challan Status</strong> to begin searching for pending fines.</p></div>
+      <div class="challan-step"><div class="challan-step-num">03</div><h5>Enter Your Identifier</h5><p>Enter one of: your <strong>Challan Number</strong>, <strong>Driving Licence Number</strong>, or <strong>Vehicle Registration Number</strong>.</p></div>
+      <div class="challan-step"><div class="challan-step-num">04</div><h5>Review Challan Details</h5><p>Click <strong>Get Details</strong> to retrieve all pending challans — offence type, date, issuing authority, and fine amount.</p></div>
+      <div class="challan-step"><div class="challan-step-num">05</div><h5>Pay Online Securely</h5><p>Select the challan(s) and click <strong>Pay Now</strong> to settle via UPI, net banking, or card. Download your payment receipt.</p></div>
+      <div class="challan-alert"><h5>⚠ Do Not Ignore Pending Challans</h5><p>Unresolved eChallans block your RC renewal and attract escalated penalties. Check regularly, especially if you drive through camera-monitored corridors.</p></div>
+    </div>
+  </div>
 </section>
 
-<!-- FAQ -->
-<section id="faq" class="bg-light py-5">
-    <div class="container">
-        <h2>Frequently Asked Questions (FAQ)</h2>
-
-        <h5>Is Parivahan Sewa an official government website?</h5>
-        <p>Yes, Parivahan Sewa is operated by the Ministry of Road Transport and Highways (MoRTH), Government of India.</p>
-
-        <h5>Can I apply for DL completely online?</h5>
-        <p>You can apply online, but biometric verification and driving test require physical visit to RTO.</p>
-
-        <h5>Can RC and DL be downloaded online?</h5>
-        <p>Yes, RC and DL can be downloaded through DigiLocker or mParivahan app.</p>
-
-        <h5>Is Aadhaar mandatory?</h5>
-        <p>Aadhaar is required for most services for identity verification.</p>
+<!-- ══ §9 OFFICIAL FORMS ══ -->
+<section class="section section-alt" id="forms">
+  <div class="container">
+    <div class="section-header">
+      <div class="label"><div class="label-line"></div>Official Documents</div>
+      <h2 class="section-title">Official Forms — Download Links</h2>
+      <p class="section-sub">Mandatory Motor Vehicles Act forms required for licence applications, vehicle registration, and ownership transactions.</p>
     </div>
+    <p style="font-size:0.9rem;font-weight:600;color:var(--navy);margin-bottom:14px;">Driving Licence Forms</p>
+    <div class="qt-wrap">
+      <table>
+        <thead><tr><th style="width:130px;">Form</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td><a href="https://transport.delhi.gov.in/sites/default/files/generic_multiple_files/form-1.pdf" target="_blank"><span class="form-badge">Form 1</span></a></td><td>Physical and mental fitness self-declaration — required for all non-transport DL applications and renewals</td></tr>
+          <tr><td><a href="https://parivahan.gov.in/parivahan/sites/default/files/DownloadForm/cmvr/FORM-1A.pdf" target="_blank"><span class="form-badge">Form 1A</span></a></td><td>Certified medical fitness certificate from a registered doctor — mandatory for commercial/transport vehicle licences</td></tr>
+          <tr><td><a href="https://parivahan.gov.in/parivahan/sites/default/files/DownloadForm/cmvr/FORM-2.pdf" target="_blank"><span class="form-badge">Form 2</span></a></td><td>Core application form for new DL, renewal, duplicate request, or any modification to an existing licence</td></tr>
+          <tr><td><a href="https://parivahan.gov.in/parivahan/sites/default/files/DownloadForm/cmvr/FORM-4A.pdf" target="_blank"><span class="form-badge">Form 4A</span></a></td><td>Application for grant of Permanent Driving Licence after completing the LL holding period</td></tr>
+          <tr><td><a href="https://parivahan.gov.in/parivahan/sites/default/files/DownloadForm/cmvr/FORM-5.pdf" target="_blank"><span class="form-badge">Form 5</span></a></td><td>Driving proficiency certificate from an accredited school — accepted in lieu of RTO practical test in some states</td></tr>
+          <tr><td><a href="https://parivahan.gov.in/parivahan/sites/default/files/DownloadForm/cmvr/FORM-8.pdf" target="_blank"><span class="form-badge">Form 8</span></a></td><td>Application to add a new vehicle class endorsement onto an existing driving licence</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:0.9rem;font-weight:600;color:var(--navy);margin:32px 0 14px;">Vehicle Registration Forms</p>
+    <div class="qt-wrap">
+      <table>
+        <thead><tr><th style="width:130px;">Form</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td><a href="https://parivahan.gov.in/parivahan/sites/default/files/DownloadForm/cmvr/FORM-25.pdf" target="_blank"><span class="form-badge">Form 25</span></a></td><td>Application for renewing a vehicle's Registration Certificate (RC) before or after expiry</td></tr>
+          <tr><td><a href="https://parivahan.gov.in/parivahan/sites/default/files/DownloadForm/cmvr/FORM-26.pdf" target="_blank"><span class="form-badge">Form 26</span></a></td><td>Application for a duplicate RC when the original is lost, stolen, or physically destroyed</td></tr>
+          <tr><td><a href="https://parivahan.gov.in/parivahan/sites/default/files/DownloadForm/cmvr/FORM-28.pdf" target="_blank"><span class="form-badge">Form 28</span></a></td><td>No Objection Certificate (NOC) application — required before transferring a vehicle to another state</td></tr>
+          <tr><td><a href="https://parivahan.gov.in/parivahan/sites/default/files/DownloadForm/cmvr/FORM-29.pdf" target="_blank"><span class="form-badge">Form 29</span></a></td><td>Formal notice of vehicle ownership transfer submitted by the seller to the RTO</td></tr>
+          <tr><td><a href="https://parivahan.gov.in/parivahan/sites/default/files/DownloadForm/cmvr/FORM-30.pdf" target="_blank"><span class="form-badge">Form 30</span></a></td><td>Ownership transfer application submitted by the buyer at their local RTO</td></tr>
+          <tr><td><a href="https://parivahan.gov.in/parivahan/sites/default/files/DownloadForm/cmvr/FORM-35.pdf" target="_blank"><span class="form-badge">Form 35</span></a></td><td>Application to cancel a hypothecation (loan) agreement after the vehicle loan is fully repaid</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </section>
 
-<!-- Footer -->
-<footer class="bg-primary text-white py-4">
-    <div class="container text-center">
-        <p class="mb-1">© 2026 Parivahan Sewa Portal Guide</p>
-        <p class="small">This website is for informational purposes only and is not an official government website.</p>
+<!-- ══ §10 HELPDESK ══ -->
+<section class="section" id="support">
+  <div class="container">
+    <div class="section-header">
+      <div class="label"><div class="label-line"></div>Support</div>
+      <h2 class="section-title">Parivahan Helpdesk Contacts</h2>
+      <p class="section-sub">Reach the right support team directly. Faster resolution starts with the correct email address.</p>
     </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-card-head">
+          <div class="contact-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1a5fb4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+          <h5>VAHAN Services</h5>
+        </div>
+        <p>Vehicle Registration, RC Renewal, Fitness Certificate, Road Tax, National Permit, Dealer Registration</p>
+        <div class="contact-email">helpdesk-vahan [at] gov.in</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-head">
+          <div class="contact-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1a5fb4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M7 15h4M7 11h6"/><circle cx="16" cy="11" r="2"/></svg></div>
+          <h5>Sarathi — DL Services</h5>
+        </div>
+        <p>Learner Licence, Permanent DL, DL Renewal, Duplicate DL, Address Changes, Test Bookings</p>
+        <div class="contact-email">helpdesk-sarathi [at] gov.in</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-head">
+          <div class="contact-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1a5fb4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+          <h5>mParivahan App</h5>
+        </div>
+        <p>Mobile App Issues, DigiLocker Integration, App Login Problems, Digital Document Queries</p>
+        <div class="contact-email">helpdesk-mparivahan [at] gov.in</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-head">
+          <div class="contact-icon" style="background:var(--saffron-pale);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#e8820c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+          <h5>eChallan Disputes</h5>
+        </div>
+        <p>Challan Disputes, Payment Failures, Challan Status Issues, Wrongful Fine Queries</p>
+        <div class="contact-email">helpdesk-echallan [at] gov.in</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ §11 FAQ ══ -->
+<section class="section section-alt" id="faq">
+  <div class="container">
+    <div class="section-header">
+      <div class="label"><div class="label-line"></div>Common Questions</div>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-sub">Detailed answers to the questions most commonly asked by Indian vehicle owners and drivers.</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item"><div class="faq-q"><span class="faq-num">Q1</span>What is Parivahan Sewa and who manages it?</div><div class="faq-a">Parivahan Sewa is the Government of India's official unified platform for all road transport citizen services. It is developed and operated by the <strong>National Informatics Centre (NIC)</strong> on behalf of the <strong>Ministry of Road Transport and Highways (MoRTH)</strong>. The platform serves all 36 states and UTs, connecting citizens, RTOs, traffic police, insurers, and transport operators through a shared national database.</div></div>
+      <div class="faq-item"><div class="faq-q"><span class="faq-num">Q2</span>Can I complete the entire driving licence process without visiting an RTO?</div><div class="faq-a">Most of the process — application, document upload, fee payment, and the Learner's Licence knowledge test — can be completed entirely online via <a href="https://sarathi.parivahan.gov.in/" target="_blank">sarathi.parivahan.gov.in</a>. However, the <strong>practical driving test</strong> for the Permanent DL still requires a physical RTO visit. A brief biometric visit is also needed for renewals and duplicates in most states.</div></div>
+      <div class="faq-item"><div class="faq-q"><span class="faq-num">Q3</span>How can I verify vehicle owner details using just the registration number?</div><div class="faq-a">Visit <a href="https://parivahan.gov.in/" target="_blank">parivahan.gov.in</a> and use the <strong>"Know Your Vehicle Details"</strong> tool. Enter the registration number and complete the captcha. The system displays RC validity, insurance expiry, PUC status, and vehicle class. Full owner identity details are restricted to authorised agencies to protect citizen privacy.</div></div>
+      <div class="faq-item"><div class="faq-q"><span class="faq-num">Q4</span>A challan has been wrongly issued against my vehicle — how do I dispute it?</div><div class="faq-a">Visit <a href="https://echallan.parivahan.gov.in/" target="_blank">echallan.parivahan.gov.in</a>, retrieve your challan details, and select <strong>"Dispose in Court"</strong> — this routes the matter to the appropriate traffic court. You may also email <strong>helpdesk-echallan [at] gov.in</strong> with your challan number, vehicle details, and supporting evidence such as GPS records or photographs.</div></div>
+      <div class="faq-item"><div class="faq-q"><span class="faq-num">Q5</span>Is the mParivahan app accepted as a valid substitute for physical documents?</div><div class="faq-a">Yes — completely. Following the 2019 amendment to the Motor Vehicles Act, digital documents in <strong>mParivahan</strong> or <strong>DigiLocker</strong> are fully legally valid and must be accepted by all enforcement authorities across India. If a police officer refuses to accept your digital document, you may note their badge number and file a grievance with the state transport department.</div></div>
+      <div class="faq-item"><div class="faq-q"><span class="faq-num">Q6</span>What is the difference between VAHAN and Sarathi?</div><div class="faq-a"><strong>VAHAN</strong> is vehicle-centric — managing RC issuance, road tax, fitness certificates, permits, hypothecation, and ownership transfers. <strong>Sarathi</strong> is driver-centric — managing learner's and permanent licences, renewals, duplicates, test bookings, and driving school accreditations. Both share a common national database under the Parivahan Sewa umbrella.</div></div>
+      <div class="faq-item"><div class="faq-q"><span class="faq-num">Q7</span>How long does it take to receive the physical driving licence card?</div><div class="faq-a">After passing your driving test, your Permanent DL is typically dispatched within <strong>7 to 14 working days</strong> via India Post Speed Post. Track dispatch status anytime on the Sarathi portal. If the card has not arrived within 30 days of the expected dispatch date, raise a grievance through Sarathi's online redressal system.</div></div>
+      <div class="faq-item"><div class="faq-q"><span class="faq-num">Q8</span>Can I transfer a vehicle to another state through Parivahan Sewa?</div><div class="faq-a">Yes. Apply for a <strong>No Objection Certificate (NOC)</strong> from the original state's RTO using Form 28 via VAHAN. Once issued, re-register with the destination state's RTO using Form 29 and Form 30, and pay the new state's road tax. Most states process NOCs digitally within 5–7 working days.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ §12 CTA ══ -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Ready to Get Started?</h2>
+    <p>Access every transport service India's official Parivahan portal offers — no queues, no agents, fully digital.</p>
+    <div class="cta-buttons">
+      <a href="https://sarathi.parivahan.gov.in/" target="_blank" class="btn-cta-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M7 15h4M7 11h6"/></svg>
+        Sarathi — Driving Licences
+      </a>
+      <a href="https://parivahan.gov.in/" target="_blank" class="btn-cta-secondary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/></svg>
+        VAHAN — Vehicle Services
+      </a>
+      <a href="https://echallan.parivahan.gov.in/" target="_blank" class="btn-cta-secondary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        eChallan — Pay Fines
+      </a>
+    </div>
+    <div class="share-block">
+      <p>Share this guide</p>
+      <div class="share-row">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://parivahansewas.com/" target="_blank" class="share-btn share-fb">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg> Facebook
+        </a>
+        <a href="https://api.whatsapp.com/send?text=Complete%20Parivahan%20Sewa%20guide%20-%20DL%2C%20eChallan%2C%20RC%20%26%20more!%20https://parivahansewas.com/" target="_blank" class="share-btn share-wa">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> WhatsApp
+        </a>
+        <a href="https://twitter.com/intent/tweet?url=https://parivahansewas.com/&text=Complete%20guide%20to%20Parivahan%20Sewa" target="_blank" class="share-btn share-tw">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg> Twitter
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a class="nav-logo" href="https://parivahansewas.com/" style="text-decoration:none;">
+        <div class="nav-logo-dot"></div>Parivahan Sewa
+      </a>
+      <p>India's most comprehensive independent guide to Parivahan Sewa — covering driving licences, vehicle registration, eChallan, and every RTO service online.</p>
+    </div>
+    <div class="footer-col">
+      <h6>DL Services</h6>
+      <a href="https://sarathi.parivahan.gov.in/" target="_blank">Apply for Learner Licence</a>
+      <a href="https://sarathi.parivahan.gov.in/" target="_blank">Apply for Permanent DL</a>
+      <a href="https://sarathi.parivahan.gov.in/" target="_blank">Renew Driving Licence</a>
+      <a href="https://sarathi.parivahan.gov.in/" target="_blank">Duplicate DL</a>
+      <a href="https://parivahan.gov.in/rcdlstatus/?pur_cd=101" target="_blank">Check DL Status</a>
+    </div>
+    <div class="footer-col">
+      <h6>Vehicle Services</h6>
+      <a href="https://parivahan.gov.in/parivahan//node/1978" target="_blank">Vehicle Registration</a>
+      <a href="https://fancy.parivahan.gov.in/" target="_blank">Fancy Number</a>
+      <a href="https://vahan.parivahan.gov.in/npermit/" target="_blank">National Permit</a>
+      <a href="https://echallan.parivahan.gov.in/" target="_blank">Pay eChallan</a>
+      <a href="https://parivahan.gov.in/" target="_blank">Know Your Vehicle</a>
+    </div>
+    <div class="footer-col">
+      <h6>Quick Links</h6>
+      <a href="https://parivahansewas.com/">Home</a>
+      <a href="https://parivahansewas.com/about-us.html">About Us</a>
+      <a href="https://parivahansewas.com/privacy-policy.html">Privacy Policy</a>
+      <a href="https://parivahansewas.com/rto-vehicle-information.html">RTO Vehicle Info</a>
+      <a href="https://parivahan.gov.in/" target="_blank">Official Portal</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-disclaimer"><strong style="color:rgba(255,255,255,0.5);">Disclaimer:</strong> Parivahansewas.com is an independent information platform with no affiliation to any government agency, MoRTH, or any RTO. All content is for general guidance only. Always verify current procedures at <a href="https://parivahan.gov.in/" target="_blank">parivahan.gov.in</a> or your state RTO.</p>
+    <p class="footer-copy">© 2025 Parivahansewas.com</p>
+  </div>
 </footer>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
+<script>
+const toggle = document.getElementById('navToggle');
+const drawer = document.getElementById('navDrawer');
+toggle.addEventListener('click', () => {
+  toggle.classList.toggle('open');
+  drawer.classList.toggle('open');
+});
+drawer.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    toggle.classList.remove('open');
+    drawer.classList.remove('open');
+  });
+});
+</script>
 </body>
 </html>
